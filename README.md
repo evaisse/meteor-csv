@@ -21,7 +21,7 @@ given a csv string like that
 
 You can use server-side code synchronous to load line by line the csv file
 
-    CSV.readCsvFileLineByLine('simple.csv', function (line) {
+    CSV.readCsvFileLineByLine('simple.csv', function (line, index, rawParsedLine) {
         lines.push(line);
     });
 
@@ -45,3 +45,16 @@ you can simply add options to make it simple (refer to papa docs : http://papapa
     lines[0].firstName === "foo";
     lines[1].firstName === "jim";
 
+
+
+
+
+Changelog
+----
+
+
+### 0.1.2
+
+  - Fix bug on empty lines, 
+  - delete empty lines is now default settings
+  - line reader callback recieve line count as second parameter, and third parmaters is raw parsed Baby Parse line

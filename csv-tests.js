@@ -104,3 +104,26 @@ Tinytest.add('test customs delimiter and vicious formats', function (test) {
     test.equal(lastLine.lastName, "morrison");
 
 });
+
+
+
+
+Tinytest.add('test empty lines', function (test) {
+
+    var lastLine, c = 0;
+
+    if (Meteor.isClient) {
+        return;
+    }
+
+    CSV.readCsvFileLineByLine(process.env.PWD + '/./fixtures/test-empty-lines-with-4-rows.csv', { 
+        skipEmpty: true,
+    }, function (line) {
+        lastLine = line;
+        c++;
+    });
+
+    test.equal(lastLine[2], "treffort-cuisiat");
+    test.equal(c, 4);
+
+});

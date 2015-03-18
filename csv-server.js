@@ -21,7 +21,11 @@ CSV.readCsvFileLineByLine = function (filepath, config, linecallback) {
     var readCsv,
         lineParser,
         rd, 
-        headers = [];
+        lineCount = 0,
+        cfg = {
+            fileHasHeaders: false,
+        },
+        headers;
 
     /*
         Alternative syntax
@@ -34,10 +38,14 @@ CSV.readCsvFileLineByLine = function (filepath, config, linecallback) {
     linecallback = linecallback || function () {};
     config = config || {};
 
+    if (config.skipEmptyLines === undefined) {
+        config.skipEmptyLines = true;
+    }
+
     /*
         We handle headers ourself
      */
-    headers = config.headers ? headers : false;
+    cfg.fileHasHeaders = !!config.headers;
     delete config['headers'];
 
     /**
@@ -47,26 +55,30 @@ CSV.readCsvFileLineByLine = function (filepath, config, linecallback) {
      */
     linePreprocessorParser = function (line) {
 
-        var row = {};
+        var row = {},
+            parsed = CSV.parse(line, config);
 
-        if (headers) {
 
-            if (!headers.length) {
-                headers = CSV.parse(line, config).data[0];
+
+        if (!parsed.data[0]) {
+            return;
+        }
+
+        if (cfg.fileHasHeaders) {
+            if (!headers) {
+                headers = parsed.data[0];
                 return;
             }
 
             headers.forEach(function (e, i) {
-
-                row[e] = CSV.parse(line, config).data[0][i];
-
+                row[e] = parsed.data[0][i];
             });
 
         } else {
-            row = CSV.parse(line, config).data[0];
+            row = parsed.data[0];
         }
 
-        linecallback(row);
+        linecallback(row, lineCount++, parsed);
 
     }
 
