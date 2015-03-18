@@ -1,6 +1,6 @@
 Package.describe({
     name: 'evaisse:csv',
-    version: '0.0.1',
+    version: '0.1.1',
     // Brief, one-line summary of the package.
     summary: 'A Meteor isomorphic CSV reader/writer based on Papa Parse & Baby Parse',
     // URL to the Git repository containing the source code for this package.
