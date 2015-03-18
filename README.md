@@ -21,12 +21,11 @@ given a csv string like that
 
 You can use server-side code synchronous to load line by line the csv file
 
-    CSV.readCsvFileLineByLine(process.env.PWD + '/server/data/my-file.csv', function (line) {
+    CSV.readCsvFileLineByLine('simple.csv', function (line) {
         lines.push(line);
     });
 
     lines[0][1] === "01";
-
 
 If you got more complex CSV files, with headers and escaping chars,
 
@@ -36,7 +35,7 @@ If you got more complex CSV files, with headers and escaping chars,
 
 you can simply add options to make it simple (refer to papa docs : http://papaparse.com/docs#config)
 
-    CSV.readCsvFileLineByLine(process.env.PWD + '/server/data/my-file.csv', {
+    CSV.readCsvFileLineByLine(process.env.PWD + '/vicious.csv', {
         headers: true,
         delimiter: ":",
     }, function (line) {
