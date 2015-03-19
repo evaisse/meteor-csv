@@ -52,6 +52,13 @@ you can simply add options to make it simple (refer to papa docs : http://papapa
 Changelog
 ----
 
+### 0.1.4
+
+  - server file parsing done by NPM byline instead of readline lib
+
+### 0.1.3
+
+  - update docs
 
 ### 0.1.2
 
