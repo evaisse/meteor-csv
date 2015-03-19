@@ -58,8 +58,6 @@ CSV.readCsvFileLineByLine = function (filepath, config, linecallback) {
         var row = {},
             parsed = CSV.parse(line, config);
 
-
-
         if (!parsed.data[0]) {
             return;
         }
@@ -90,24 +88,23 @@ CSV.readCsvFileLineByLine = function (filepath, config, linecallback) {
 
         var rd,
             fs = Npm.require('fs'),
-            readline = Npm.require('readline'),
+            byline = Npm.require('byline'),
             Future = Npm.require('fibers/future'),
             future;
 
         future = new Future;
 
-        rd = readline.createInterface({
-            input: fs.createReadStream(filepath),
-            output: process.stdout,
-            terminal: false
+        rd = byline.createStream(fs.createReadStream(filepath));
+
+        rd.on('error', function (err) {
+            future.error();
         });
 
-        rd.on('line', function (line) {
-            linePreprocessorParser(line);
+        rd.on('data', function (chunk, enc, next) {
+            linePreprocessorParser(chunk.toString());
         });
 
-        rd.on('close', function(line) {
-            rd.write("\n"); // trick that allow readline to read the last line
+        rd.on('end', function(line) {
             future.return();
         });
 

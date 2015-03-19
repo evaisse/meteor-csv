@@ -28,3 +28,6 @@ Package.onTest(function (api) {
     api.use('evaisse:csv');
     api.addFiles('csv-tests.js');
 });
+
+
+Npm.depends({"byline":"4.2.1"});
