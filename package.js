@@ -15,12 +15,8 @@ Package.onUse(function (api) {
     api.use('harrison:babyparse@1.0.1', ['server']);
     api.versionsFrom('1.0.4.1');
     api.export('CSV');
-    api.addFiles([
-        'csv-client.js'
-    ], ['client', 'web.browser', 'web.cordova']);
-    api.addFiles([
-        'csv-server.js'
-    ], 'server');
+    api.addFiles('csv-server.js', 'server');
+    api.addFiles('csv-client.js', 'client');
 });
 
 Package.onTest(function (api) {
