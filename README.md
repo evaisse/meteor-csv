@@ -27,6 +27,16 @@ You can use server-side code synchronous to load line by line the csv file
 
     lines[0][1] === "01";
 
+If you want to insert in your collection, you need to wrap your insert, to make sure your code will be run synchronuously:
+
+``` javascript
+CSV.readCsvFileLineByLine('simple.csv', Meteor.bindEnvironment(function (line, index, rawParsedLine) {
+  Collection.insert({
+   property: line.property
+  }));
+});
+```
+
 If you got more complex CSV files, with headers and escaping chars,
 
     "id":"firstName":"lastName"
