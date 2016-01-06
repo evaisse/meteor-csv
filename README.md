@@ -13,7 +13,7 @@ A Meteor isomorphic CSV reader/writer
 Quickstart
 ----
 
-given a csv string like that
+given a csv file like that (simple.csv)
 
     1;01;ozan;OZAN;Ozan;O250;OSN;01190;284;01284;2;26;6;618;469;500;94;660;4.91667;46.3833;2866;51546;+45456;462330;170;205;14126;8823;26916
     2;01;marboz;MARBOZ;Marboz;M612;MRBS;01851;232;01232;2;11;6;2182;2164;2200;54;4014;5.25;46.3333;3246;51492;+51530;462033;194;240;4580;14287;1768
