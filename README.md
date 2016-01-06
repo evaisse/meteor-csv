@@ -1,6 +1,8 @@
 
 Meteor CSV reader/writer
-----
+===
+
+[![testing](https://travis-ci.org/evaisse/meteor-csv.svg?branch=master)](https://travis-ci.org/evaisse/meteor-csv)
 
 A Meteor isomorphic CSV reader/writer
 
@@ -72,6 +74,6 @@ Changelog
 
 ### 0.1.2
 
-  - Fix bug on empty lines, 
+  - Fix bug on empty lines,
   - delete empty lines is now default settings
   - line reader callback recieve line count as second parameter, and third parmaters is raw parsed Baby Parse line
